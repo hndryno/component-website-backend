@@ -31,10 +31,10 @@ jobs:
           key: ${{ secrets.SSHKEY }}
           # script: |
           #   pm2 restart /backend/index.js
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 16
-      - run: npm ci
+      # - uses: actions/setup-node@v2
+      #   with:
+      #     node-version: 16
+      # - run: npm ci
 
   # publish-npm:
   #   needs: build
