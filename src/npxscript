@@ -1,0 +1,1 @@
+npx sequelize-cli model:generate --name Menu --attributes nama_menu:string,urutan:integer,url:string,link:string,icon_id:string
