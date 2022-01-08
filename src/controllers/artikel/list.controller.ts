@@ -29,7 +29,7 @@ class ArtikelList extends API{
                 status: 'error',
                 message: err.message
             })
-        }
+        } 
     }
 }
 
