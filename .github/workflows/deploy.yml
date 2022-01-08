@@ -21,7 +21,7 @@ jobs:
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSHKEY }}
           source: '.'
-          target: '/backend'
+          target: './backend'
       - name: Check VPS
         uses: appleboy/ssh-action@master
         with:
@@ -29,6 +29,8 @@ jobs:
           username: ${{ secrets.USER }}
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSHKEY }}
+          # script: |
+          #   pm2 restart /backend/index.js
       - uses: actions/setup-node@v2
         with:
           node-version: 16
