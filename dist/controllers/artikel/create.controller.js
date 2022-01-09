@@ -53,7 +53,6 @@ class ArtikelCreate extends index_core_1.default {
                 }
                 const id = (0, uuid_1.v4)();
                 let request_data = { id, nama_artikel, deskripsi_artikel, kategori_id, gambar_id };
-                console.log(request_data);
                 let data = yield Artikel.create(request_data);
                 return res.status(201).json({
                     status: 'success',

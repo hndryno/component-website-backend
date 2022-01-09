@@ -18,7 +18,7 @@ router.get('/', async(req:Request, res: Response, next: NextFunction) => await n
 
 router.get('/:id', async(req:Request, res: Response, next: NextFunction) => await new ArtikelShow().exec(req, res, next))
 
-router.put('/:id', async(req:Request, res: Response, next: NextFunction) => await new ArtikelUpdate().exec(req, res, next))
+router.patch('/:id', upload.single('image'), async(req:Request, res: Response, next: NextFunction) => await new ArtikelUpdate().exec(req, res, next))
 
 router.delete('/:id', async(req:Request, res: Response, next: NextFunction) => await new ArtikelDelete().exec(req, res, next))
 

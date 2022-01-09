@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const index_core_1 = __importDefault(require("../../core/index.core"));
+const error_helper_1 = __importDefault(require("../../helper/error.helper"));
 const Artikel = require('../../db/models').tbl_artikel;
 const Gambar = require('../../db/models').tbl_gambar;
 const Kategori = require('../../db/models').tbl_kategori;
@@ -36,9 +37,10 @@ class ArtikelList extends index_core_1.default {
                 });
             }
             catch (err) {
+                let message = 'Unknown Error';
+                let error_result = yield (0, error_helper_1.default)(err, message);
                 return res.status(400).json({
-                    status: 'error',
-                    message: err.message
+                    error_result
                 });
             }
         });

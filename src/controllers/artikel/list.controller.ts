@@ -1,5 +1,6 @@
 import API from '../../core/index.core';
 import {Request, Response, NextFunction} from 'express';
+import reportError from '../../helper/error.helper';
 
 const Artikel = require('../../db/models').tbl_artikel;
 const Gambar = require('../../db/models').tbl_gambar;
@@ -25,9 +26,12 @@ class ArtikelList extends API{
                 data
             }) 
         }catch(err:any){
+            let message = 'Unknown Error'
+
+            let error_result = await reportError(err, message)
+
             return res.status(400).json({
-                status: 'error',
-                message: err.message
+                error_result
             })
         } 
     }

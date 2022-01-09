@@ -1,6 +1,7 @@
 import API from '../../core/index.core';
 import {ArtikelInstance} from '../../models/artikel';
 import {Request, Response, NextFunction} from 'express';
+import reportError from '../../helper/error.helper';
 
 class ArtikelShow extends API{
     constructor(){
@@ -18,9 +19,12 @@ class ArtikelShow extends API{
                 data
             })
         }catch(err:any){
+            let message = 'Unknown Error'
+
+            let error_result = await reportError(err, message)
+
             return res.status(400).json({
-                status: 'error',
-                message: err.message
+                error_result
             })
         }
     }

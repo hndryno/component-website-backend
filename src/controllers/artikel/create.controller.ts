@@ -55,8 +55,6 @@ class ArtikelCreate extends API{
 
             let request_data:any = {  id, nama_artikel, deskripsi_artikel, kategori_id, gambar_id }
 
-            console.log(request_data);
-
             let data = await Artikel.create(request_data)
 
             return res.status(201).json({
