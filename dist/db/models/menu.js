@@ -4,7 +4,7 @@ const { v4: uuid } = require('uuid')
 module.exports = (sequelize, DataTypes) => {
   const Menu = sequelize.define('tbl_menu', {
     nama: DataTypes.STRING,
-    urutan: DataTypes.STRING,
+    link: DataTypes.STRING,
     icon: DataTypes.STRING
   }, {
     underscored: true

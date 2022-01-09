@@ -7,10 +7,13 @@ module.exports = {
         allowNull: false,
         type: Sequelize.UUID,
       },
+      gambar_id: {
+        type: Sequelize.UUID
+      },
       nama: {
         type: Sequelize.STRING
       },
-      urutan: {
+      link: {
         type: Sequelize.STRING
       },
       icon: {

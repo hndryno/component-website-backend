@@ -24,12 +24,12 @@ const path_1 = __importDefault(require("path"));
 class App {
     constructor(port) {
         this.port = port;
-        this.app = express_1.default();
+        this.app = (0, express_1.default)();
         this.dbConnection();
         this.settings();
         this.middlewares();
         this.routes();
-        dotenv_1.config();
+        (0, dotenv_1.config)();
     }
     dbConnection() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -46,15 +46,15 @@ class App {
         this.app.set(`port`, this.port || process.env.PORT || 3000);
     }
     middlewares() {
-        this.app.use(cors_1.default());
-        this.app.use(morgan_1.default('dev'));
+        this.app.use((0, cors_1.default)());
+        this.app.use((0, morgan_1.default)('dev'));
         this.app.use(body_parser_1.default.urlencoded({ extended: true }));
         this.app.use(body_parser_1.default.json());
         this.app.use('/uploads', express_1.default.static(path_1.default.join(__dirname, '../uploads')));
         this.app.use(body_parser_1.default.json());
     }
     routes() {
-        index_routes_1.default(this.app);
+        (0, index_routes_1.default)(this.app);
     }
     listen() {
         return __awaiter(this, void 0, void 0, function* () {

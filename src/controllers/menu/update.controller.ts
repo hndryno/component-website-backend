@@ -14,9 +14,9 @@ class MenuUpdate extends API{
         try{
             const id = req.params.id
 
-            let { nama, urutan, icon } = req.body
+            let { nama, link, icon } = req.body
 
-            let request_data:any = { nama, urutan, icon }
+            let request_data:any = { nama, link, icon }
 
             const errors = validationResult(req);
 

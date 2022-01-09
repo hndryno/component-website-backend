@@ -24,9 +24,9 @@ class MenuUpdate extends index_core_1.default {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const id = req.params.id;
-                let { nama, urutan, icon } = req.body;
-                let request_data = { nama, urutan, icon };
-                const errors = express_validator_1.validationResult(req);
+                let { nama, link, icon } = req.body;
+                let request_data = { nama, link, icon };
+                const errors = (0, express_validator_1.validationResult)(req);
                 if (!errors.isEmpty()) {
                     return res.status(400).send({
                         status: "Error",
@@ -45,7 +45,7 @@ class MenuUpdate extends index_core_1.default {
             }
             catch (err) {
                 let message = 'Unknown Error';
-                let error_result = yield error_helper_1.default(err, message);
+                let error_result = yield (0, error_helper_1.default)(err, message);
                 return res.status(400).json({
                     error_result
                 });

@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const index_core_1 = __importDefault(require("../../core/index.core"));
 const Information = require('../../db/models').tbl_information;
 const error_helper_1 = __importDefault(require("../../helper/error.helper"));
-class HeaderDelete extends index_core_1.default {
+class InformationDelete extends index_core_1.default {
     constructor() {
         super(Information);
     }
@@ -32,7 +32,7 @@ class HeaderDelete extends index_core_1.default {
             }
             catch (err) {
                 let message = 'Unknown Error';
-                let error_result = yield error_helper_1.default(err, message);
+                let error_result = yield (0, error_helper_1.default)(err, message);
                 return res.status(400).json({
                     error_result
                 });
@@ -40,4 +40,4 @@ class HeaderDelete extends index_core_1.default {
         });
     }
 }
-exports.default = HeaderDelete;
+exports.default = InformationDelete;

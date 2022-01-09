@@ -26,7 +26,7 @@ class ArtikelImage extends index_core_1.default {
             try {
                 console.log('masuk heheheh');
                 console.log(req.file);
-                const id = uuid_1.v4();
+                const id = (0, uuid_1.v4)();
                 let nama = (_a = req.file) === null || _a === void 0 ? void 0 : _a.originalname;
                 let type = (_b = req.file) === null || _b === void 0 ? void 0 : _b.mimetype;
                 let data = (_c = req.file) === null || _c === void 0 ? void 0 : _c.path;
@@ -38,11 +38,12 @@ class ArtikelImage extends index_core_1.default {
                 return res.status(201).json({
                     status: 'success',
                     message: 'artikel berhasil dibuat',
+                    // data: data_response
                 });
             }
             catch (err) {
                 let message = 'Unknown Error';
-                let error_result = yield error_helper_1.default(err, message);
+                let error_result = yield (0, error_helper_1.default)(err, message);
                 return res.status(400).json({
                     error_result
                 });

@@ -1,6 +1,6 @@
 import { check } from 'express-validator' 
 
-class menuValidation{
+class informationValidation{
     static CreateCsValidation = [ 
         check("nama")
         .not()
@@ -30,4 +30,4 @@ class menuValidation{
     ]
 }
 
-export default menuValidation;
+export default informationValidation;

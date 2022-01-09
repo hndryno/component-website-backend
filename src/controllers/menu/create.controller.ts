@@ -15,7 +15,7 @@ class MenuCreate extends API{
 
             const id = uuidv4();
 
-            let { nama, urutan, icon } = req.body
+            let { nama, link, icon } = req.body
 
             const errors = validationResult(req);
 
@@ -26,7 +26,7 @@ class MenuCreate extends API{
                 });
             }
 
-            let request_data:any = { id, nama, urutan, icon }
+            let request_data:any = { id, nama, link, icon }
 
             let data = await Menu.create(request_data);
 

@@ -3,7 +3,7 @@ const Information = require('../../db/models').tbl_information
 import {Request, Response, NextFunction} from 'express';
 import reportError from '../../helper/error.helper';
 
-class HeaderDelete extends API{
+class InformationDelete extends API{
     constructor(){
         super(Information)
     }
@@ -30,4 +30,4 @@ class HeaderDelete extends API{
     }
 }
 
-export default HeaderDelete
+export default InformationDelete

@@ -4,7 +4,6 @@ import {v4 as uuidv4} from 'uuid';
 import {validationResult} from 'express-validator';
 import path from 'path';
 import fs from 'fs';
-import sequelize from 'sequelize';
 import reportError from '../../helper/error.helper';
 
 const Artikel = require('../../db/models').tbl_artikel;
@@ -18,8 +17,6 @@ class ArtikelCreate extends API{
 
     async exec(req: Request, res: Response, next: NextFunction){
         try{
-            const t = await sequelize.Transaction;
-
             const id2 = uuidv4();
 
             if(!req.file){

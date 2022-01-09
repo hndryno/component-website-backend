@@ -25,7 +25,7 @@ class CreateIcons extends index_core_1.default {
         var _a;
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const id = uuid_1.v4();
+                const id = (0, uuid_1.v4)();
                 let { nama, tag } = req.body;
                 let path = (_a = req.file) === null || _a === void 0 ? void 0 : _a.path;
                 let request_data = { id, nama, tag, path };
@@ -38,7 +38,7 @@ class CreateIcons extends index_core_1.default {
             }
             catch (err) {
                 let message = 'Unknown Error';
-                let error_result = yield error_helper_1.default(err, message);
+                let error_result = yield (0, error_helper_1.default)(err, message);
                 return res.status(400).json({
                     error_result
                 });

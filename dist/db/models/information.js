@@ -7,12 +7,14 @@ module.exports = (sequelize, DataTypes) => {
     nama_website: DataTypes.STRING,
     deskripsi: DataTypes.STRING,
     lokasi: DataTypes.STRING,
-    
+    gambar_id: DataTypes.UUID
+
   }, {
     underscored: true
   });
   Header.associate = (models) => {
     // associations can be defined here
+    Header.belongsTo(models.tbl_gambar, {foreignKey: 'gambar_id', as: 'info_gambar', targetKey: 'id'})
   };
   // Header.beforeCreate(header => header.id = uuid())
 

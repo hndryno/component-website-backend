@@ -15,18 +15,43 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const index_core_1 = __importDefault(require("../../core/index.core"));
 const uuid_1 = require("uuid");
 const Information = require('../../db/models').tbl_information;
-// import {HeadersInstance} from '../../models/header';
+const express_validator_1 = require("express-validator");
 const error_helper_1 = __importDefault(require("../../helper/error.helper"));
+const path_1 = __importDefault(require("path"));
+const fs_1 = __importDefault(require("fs"));
+const Image = require('../../db/models').tbl_gambar;
+let dir = path_1.default.join(__dirname, '../../../uploads');
 class InformationCreate extends index_core_1.default {
     constructor() {
         super(Information);
     }
     exec(req, res, next) {
+        var _a, _b, _c, _d;
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const id = uuid_1.v4();
-                let { namaLogo, namaWebsite, deskripsi, lokasi } = req.body;
-                let request_data = { id, namaLogo, namaWebsite, deskripsi, lokasi };
+                let information_length = yield Information.findAll({}, { raw: true });
+                if (information_length.length > 0) {
+                    throw new Error('maaf hanya boleh menambahkan 1 informasi');
+                }
+                const id2 = (0, uuid_1.v4)();
+                let filename = (_a = req.file) === null || _a === void 0 ? void 0 : _a.filename;
+                let original_name = (_b = req.file) === null || _b === void 0 ? void 0 : _b.originalname;
+                let path = (_c = req.file) === null || _c === void 0 ? void 0 : _c.path;
+                let mimetype = (_d = req.file) === null || _d === void 0 ? void 0 : _d.mimetype;
+                let req_data = { id: id2, filename, original_name, path, mimetype };
+                let save_image = yield Image.create(req_data);
+                let gambar_id = save_image.dataValues.id;
+                const id = (0, uuid_1.v4)();
+                let { nama_logo, nama_website, deskripsi, lokasi } = req.body;
+                const errors = (0, express_validator_1.validationResult)(req);
+                if (!errors.isEmpty()) {
+                    yield fs_1.default.unlinkSync(`${dir}/${filename}`);
+                    return res.status(400).send({
+                        status: "Error",
+                        message: errors.array()
+                    });
+                }
+                let request_data = { id, nama_logo, nama_website, deskripsi, lokasi, gambar_id };
                 let data = yield Information.create(request_data);
                 return res.status(201).json({
                     status: 'success',
@@ -36,7 +61,7 @@ class InformationCreate extends index_core_1.default {
             }
             catch (err) {
                 let message = 'Unknown Error';
-                let error_result = yield error_helper_1.default(err, message);
+                let error_result = yield (0, error_helper_1.default)(err, message);
                 return res.status(400).json({
                     error_result
                 });

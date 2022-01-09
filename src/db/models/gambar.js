@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   Gambar.associate = (models) => {
     // Gambar.belongsTo(models.tbl_artikel, {foreignKey: 'gambar_id', as: 'tbl_gambar', targetKey: 'id'});
     Gambar.hasOne(models.tbl_artikel, {foreignKey: 'gambar_id', as: 'tbl_gambars', sourceKey: 'id'});
+    Gambar.hasOne(models.tbl_information, {foreignKey: 'gambar_id', as: 'info_gambar', sourceKey: 'id'});
     // SubMenu.belongsTo(models.tbl_submenu, {foreignKey: 'submenu_id', as: 'tbl_submenu', targetKey: 'id'});
     // associations can be defined here
   };

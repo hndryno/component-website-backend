@@ -5,10 +5,10 @@ class menuValidation{
         check("nama")
         .not()
         .isEmpty().withMessage('Field nama menu tidak boleh kosong'),
-        check("urutan")
+        check("link")
         .not()
         .isEmpty()
-        .withMessage("Field urutan tidak boleh kosong"),
+        .withMessage("Field link tidak boleh kosong"),
         check("icon")
         .not()
         .isEmpty()
@@ -19,10 +19,10 @@ class menuValidation{
         check("nama")
         .not()
         .isEmpty().withMessage('Field nama menu tidak boleh kosong'),
-        check("urutan")
+        check("link")
         .not()
         .isEmpty()
-        .withMessage("Field urutan tidak boleh kosong"),
+        .withMessage("Field link tidak boleh kosong"),
         check("icon")
         .not()
         .isEmpty()

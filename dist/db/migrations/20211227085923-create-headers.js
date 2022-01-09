@@ -7,8 +7,13 @@ module.exports = {
         allowNull: false,
         type: Sequelize.UUID,
       },
-      nama_logo: {
-        type: Sequelize.STRING
+      gambar_id: {
+        type: Sequelize.UUID,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'tbl_gambars',
+          key: 'id'
+        },
       },
       nama_website: {
         type: Sequelize.STRING
@@ -17,6 +22,9 @@ module.exports = {
         type: Sequelize.STRING
       },
       lokasi: {
+        type: Sequelize.STRING
+      },
+      social_media: {
         type: Sequelize.STRING
       },
       created_at: {
