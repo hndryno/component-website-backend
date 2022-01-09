@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const index_core_1 = __importDefault(require("../../core/index.core"));
 const error_helper_1 = __importDefault(require("../../helper/error.helper"));
 const Kategori = require('../../db/models').tbl_kategori;
+const Artikel = require('../../db/models').tbl_artikel;
 class KategoriList extends index_core_1.default {
     constructor() {
         super(Kategori);

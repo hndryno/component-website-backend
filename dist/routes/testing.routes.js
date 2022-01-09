@@ -18,17 +18,8 @@ const list_controller_1 = __importDefault(require("../controllers/article-image/
 const view_controller_1 = __importDefault(require("../controllers/article-image/view.controller"));
 const delete_controller_1 = __importDefault(require("../controllers/article-image/delete.controller"));
 const multer_1 = __importDefault(require("multer"));
-const storage = multer_1.default.diskStorage({
-    destination: '../uploads',
-    filename: function (req, file, cb) {
-        console.log(file);
-        cb(null, new Date().getTime() + '-' + file.originalname);
-    },
-});
-const upload = (0, multer_1.default)({ storage: storage });
-// import multer from 'multer';
-// import multerSettings from '../libs/multer';
-// const upload = multer{(storage: multerSettings});
+const multer_2 = __importDefault(require("../libs/multer"));
+const upload = (0, multer_1.default)(multer_2.default);
 const router = (0, express_1.Router)();
 router.post('/', upload.single('image'), (req, res, next) => __awaiter(void 0, void 0, void 0, function* () { return yield new create_controller_1.default().exec(req, res, next); }));
 router.get('/', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () { return yield new list_controller_1.default().exec(req, res, next); }));

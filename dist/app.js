@@ -20,7 +20,7 @@ const cors_1 = __importDefault(require("cors"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const index_routes_1 = __importDefault(require("./routes/index.routes"));
 const dotenv_1 = require("dotenv");
-// import path from 'path';
+const path_1 = __importDefault(require("path"));
 class App {
     constructor(port) {
         this.port = port;
@@ -49,7 +49,8 @@ class App {
         this.app.use((0, cors_1.default)());
         this.app.use((0, morgan_1.default)('dev'));
         this.app.use(body_parser_1.default.urlencoded({ extended: true }));
-        // this.app.use('/uploads', express.static(path.join(__dirname, '../uploads')))
+        this.app.use(body_parser_1.default.json());
+        this.app.use('/uploads', express_1.default.static(path_1.default.join(__dirname, '../uploads')));
         this.app.use(body_parser_1.default.json());
     }
     routes() {
