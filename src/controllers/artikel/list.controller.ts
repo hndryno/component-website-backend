@@ -23,7 +23,7 @@ class ArtikelList extends API{
                 status: 'success',
                 message: 'header berhasil ditampilkan',
                 data
-            })
+            }) 
         }catch(err:any){
             return res.status(400).json({
                 status: 'error',
