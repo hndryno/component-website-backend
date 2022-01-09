@@ -25,7 +25,7 @@ class KategoriUpdate extends index_core_1.default {
             try {
                 const id = req.params.id;
                 let { nama_kategori, deskripsi_kategori } = req.body;
-                const errors = (0, express_validator_1.validationResult)(req);
+                const errors = express_validator_1.validationResult(req);
                 if (!errors.isEmpty()) {
                     return res.status(400).send({
                         status: "Error",
@@ -42,7 +42,7 @@ class KategoriUpdate extends index_core_1.default {
             }
             catch (err) {
                 let message = 'Unknown Error';
-                let error_result = yield (0, error_helper_1.default)(err, message);
+                let error_result = yield error_helper_1.default(err, message);
                 return res.status(400).json({
                     error_result
                 });

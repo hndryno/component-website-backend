@@ -23,7 +23,7 @@ class SubMenuCreate extends index_core_1.default {
     exec(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const id = (0, uuid_1.v4)();
+                const id = uuid_1.v4();
                 let { menu_id, nama, urutan, icon, url, target, submenu_id } = req.body;
                 let request_data = { id, nama, menu_id, urutan, icon, url, target, submenu_id };
                 let data = yield SubMenu.create(request_data);
@@ -35,7 +35,7 @@ class SubMenuCreate extends index_core_1.default {
             }
             catch (err) {
                 let message = 'Unknown Error';
-                let error_result = yield (0, error_helper_1.default)(err, message);
+                let error_result = yield error_helper_1.default(err, message);
                 return res.status(400).json({
                     error_result
                 });

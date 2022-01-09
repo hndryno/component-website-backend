@@ -1,10 +1,12 @@
 import API from '../../core/index.core';
-import {HeadersInstance} from '../../models/header';
+const Information = require('../../db/models').tbl_information
+import reportError from '../../helper/error.helper';
+
 import {Request, Response, NextFunction} from 'express';
 
 class HeaderUpdate extends API{
     constructor(){
-        super(HeadersInstance)
+        super(Information)
     }
 
     async exec(req: Request, res: Response, next: NextFunction){
@@ -15,17 +17,20 @@ class HeaderUpdate extends API{
 
             let request_data:any = { id, namaLogo, namaWebsite, deskripsi, lokasi }
 
-            let data = await HeadersInstance.update(request_data,{where:{id}})
+            let data = await Information.update(request_data,{where:{id}})
 
             return res.status(201).json({
                 status: 'success',
                 message: 'header berhasil diupdate',
                 data
             })
-        }catch(err:any){
+        }catch(err){
+            let message = 'Unknown Error'
+
+            let error_result = await reportError(err, message)
+
             return res.status(400).json({
-                status: 'error',
-                message: err.message
+                error_result
             })
         }
     }

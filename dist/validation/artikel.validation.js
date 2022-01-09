@@ -4,25 +4,25 @@ const express_validator_1 = require("express-validator");
 class artikelValidation {
 }
 artikelValidation.CreateArtikelValidation = [
-    (0, express_validator_1.check)("nama_artikel")
+    express_validator_1.check("nama_artikel")
         .not()
         .isEmpty().withMessage('Field nama artikel tidak boleh kosong'),
-    (0, express_validator_1.check)("deskripsi_artikel")
+    express_validator_1.check("deskripsi_artikel")
         .not()
         .isEmpty().withMessage('Field deskripsi tidak boleh kosong'),
-    (0, express_validator_1.check)("kategori_id")
+    express_validator_1.check("kategori_id")
         .not()
         .isEmpty()
         .withMessage("Field kategori_id tidak boleh kosong"),
 ];
 artikelValidation.UpdateArtikelValidation = [
-    (0, express_validator_1.check)("nama_artikel")
+    express_validator_1.check("nama_artikel")
         .not()
         .isEmpty().withMessage('Field nama artikel tidak boleh kosong'),
-    (0, express_validator_1.check)("deskripsi_artikel")
+    express_validator_1.check("deskripsi_artikel")
         .not()
         .isEmpty().withMessage('Field deskripsi tidak boleh kosong'),
-    (0, express_validator_1.check)("kategori_id")
+    express_validator_1.check("kategori_id")
         .not()
         .isEmpty()
         .withMessage("Field kategori_id tidak boleh kosong"),

@@ -13,12 +13,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const index_core_1 = __importDefault(require("../../core/index.core"));
-const gambarArtikel_1 = require("../../models/gambarArtikel");
+const Article = require('../../db/models').tbl_artikel;
 const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
+const error_helper_1 = __importDefault(require("../../helper/error.helper"));
 class ArtikelImageDelete extends index_core_1.default {
     constructor() {
-        super(gambarArtikel_1.GambarArtikelInstance);
+        super(Article);
     }
     exec(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -29,13 +30,13 @@ class ArtikelImageDelete extends index_core_1.default {
                 return res.status(201).json({
                     status: 'success',
                     message: 'artikel berhasil dibuat',
-                    // data: data_response
                 });
             }
             catch (err) {
+                let message = 'Unknown Error';
+                let error_result = yield error_helper_1.default(err, message);
                 return res.status(400).json({
-                    status: 'error',
-                    message: err.message
+                    error_result
                 });
             }
         });

@@ -1,11 +1,12 @@
 import API from '../../core/index.core';
-import {ArtikelInstance} from '../../models/artikel';
 import {Request, Response, NextFunction} from 'express';
+const Article = require('../../db/models').tbl_artikel;
 import path from 'path';
+import reportError from '../../helper/error.helper';
 
 class ArtikelView extends API{
     constructor(){
-        super(ArtikelInstance)
+        super(Article)
     }
     async exec(req: Request, res: Response, next: NextFunction){
         try{
@@ -28,10 +29,13 @@ class ArtikelView extends API{
             //     message: 'data berhasil ditampilkan',
             //     data: image
             // })
-        }catch(err:any){
+        }catch(err){
+            let message = 'Unknown Error'
+
+            let error_result = await reportError(err, message)
+
             return res.status(400).json({
-                status: 'error',
-                message: err.message
+                error_result
             })
         }
     }

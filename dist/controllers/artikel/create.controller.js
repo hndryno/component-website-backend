@@ -31,7 +31,7 @@ class ArtikelCreate extends index_core_1.default {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const t = yield sequelize_1.default.Transaction;
-                const id2 = (0, uuid_1.v4)();
+                const id2 = uuid_1.v4();
                 if (!req.file) {
                     throw new Error('maaf gambar tidak boleh kosong');
                 }
@@ -43,7 +43,7 @@ class ArtikelCreate extends index_core_1.default {
                 let save_image = yield Image.create(req_data);
                 let gambar_id = save_image.dataValues.id;
                 let { nama_artikel, deskripsi_artikel, kategori_id } = req.body;
-                const errors = (0, express_validator_1.validationResult)(req);
+                const errors = express_validator_1.validationResult(req);
                 if (!errors.isEmpty()) {
                     yield fs_1.default.unlinkSync(`${dir}/${filename}`);
                     return res.status(400).send({
@@ -51,7 +51,7 @@ class ArtikelCreate extends index_core_1.default {
                         message: errors.array()
                     });
                 }
-                const id = (0, uuid_1.v4)();
+                const id = uuid_1.v4();
                 let request_data = { id, nama_artikel, deskripsi_artikel, kategori_id, gambar_id };
                 let data = yield Artikel.create(request_data);
                 return res.status(201).json({
@@ -62,7 +62,7 @@ class ArtikelCreate extends index_core_1.default {
             }
             catch (err) {
                 let message = 'Unknown Error';
-                let error_result = yield (0, error_helper_1.default)(err, message);
+                let error_result = yield error_helper_1.default(err, message);
                 return res.status(400).json({
                     error_result
                 });

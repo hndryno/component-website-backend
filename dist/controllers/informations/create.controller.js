@@ -15,6 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const index_core_1 = __importDefault(require("../../core/index.core"));
 const uuid_1 = require("uuid");
 const Information = require('../../db/models').tbl_information;
+// import {HeadersInstance} from '../../models/header';
+const error_helper_1 = __importDefault(require("../../helper/error.helper"));
 class InformationCreate extends index_core_1.default {
     constructor() {
         super(Information);
@@ -22,7 +24,7 @@ class InformationCreate extends index_core_1.default {
     exec(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const id = (0, uuid_1.v4)();
+                const id = uuid_1.v4();
                 let { namaLogo, namaWebsite, deskripsi, lokasi } = req.body;
                 let request_data = { id, namaLogo, namaWebsite, deskripsi, lokasi };
                 let data = yield Information.create(request_data);
@@ -33,9 +35,10 @@ class InformationCreate extends index_core_1.default {
                 });
             }
             catch (err) {
+                let message = 'Unknown Error';
+                let error_result = yield error_helper_1.default(err, message);
                 return res.status(400).json({
-                    status: 'error',
-                    message: err.message
+                    error_result
                 });
             }
         });

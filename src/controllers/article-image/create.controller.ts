@@ -2,6 +2,8 @@ import API from '../../core/index.core';
 import {Request, Response, NextFunction} from 'express';
 import {v4 as uuidv4} from 'uuid';
 const Article = require('../../db/models').tbl_artikel;
+import reportError from '../../helper/error.helper';
+
 
 class ArtikelImage extends API{
     constructor(){
@@ -32,9 +34,12 @@ class ArtikelImage extends API{
                 // data: data_response
             })
         }catch(err){
+            let message = 'Unknown Error'
+
+            let error_result = await reportError(err, message)
+
             return res.status(400).json({
-                status: 'error',
-                message: err
+                error_result
             })
         }
     }

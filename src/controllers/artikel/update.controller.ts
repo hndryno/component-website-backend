@@ -55,7 +55,7 @@ class ArtikelUpdate extends API{
                 message: 'artikel berhasil diupdate',
                 data
             })
-        }catch(err:any){
+        }catch(err){
             let message = 'Unknown Error'
 
             let error_result = await reportError(err, message)

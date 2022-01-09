@@ -1,12 +1,14 @@
 import API from '../../core/index.core';
-import {GambarArtikelInstance} from '../../models/gambarArtikel';
+const Article = require('../../db/models').tbl_artikel;
 import {Request, Response, NextFunction} from 'express';
 import path from 'path';
 import fs from 'fs';
+import reportError from '../../helper/error.helper';
+
 
 class ArtikelImageDelete extends API{
     constructor(){
-        super(GambarArtikelInstance)
+        super(Article)
     }
 
     async exec(req: Request, res: Response, next: NextFunction){
@@ -23,10 +25,13 @@ class ArtikelImageDelete extends API{
                 message: 'artikel berhasil dibuat',
                 // data: data_response
             })
-        }catch(err:any){
+        }catch(err){
+            let message = 'Unknown Error'
+
+            let error_result = await reportError(err, message)
+
             return res.status(400).json({
-                status: 'error',
-                message: err.message
+                error_result
             })
         }
     }

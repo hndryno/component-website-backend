@@ -19,7 +19,7 @@ class KategoriList extends API{
                 message: 'header berhasil ditampilkan',
                 data
             })
-        }catch(err:any){
+        }catch(err){
             let message = 'Unknown Error'
 
             let error_result = await reportError(err, message)

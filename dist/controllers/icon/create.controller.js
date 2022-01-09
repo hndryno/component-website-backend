@@ -13,21 +13,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const index_core_1 = __importDefault(require("../../core/index.core"));
-const icon_1 = require("../../models/icon");
+// import {IconInstance} from '../../models/icon';
+const Image = require('../../db/models').tbl_gambar;
+const error_helper_1 = __importDefault(require("../../helper/error.helper"));
 const uuid_1 = require("uuid");
 class CreateIcons extends index_core_1.default {
     constructor() {
-        super(icon_1.IconInstance);
+        super(Image);
     }
     exec(req, res, next) {
         var _a;
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const id = (0, uuid_1.v4)();
+                const id = uuid_1.v4();
                 let { nama, tag } = req.body;
                 let path = (_a = req.file) === null || _a === void 0 ? void 0 : _a.path;
                 let request_data = { id, nama, tag, path };
-                let data_response = yield icon_1.IconInstance.create(request_data);
+                let data_response = yield Image.create(request_data);
                 return res.status(201).json({
                     status: 'success',
                     message: 'data berhasil dibuat',
@@ -35,9 +37,10 @@ class CreateIcons extends index_core_1.default {
                 });
             }
             catch (err) {
+                let message = 'Unknown Error';
+                let error_result = yield error_helper_1.default(err, message);
                 return res.status(400).json({
-                    status: 'error',
-                    message: err.message
+                    error_result
                 });
             }
         });

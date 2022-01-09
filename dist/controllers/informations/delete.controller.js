@@ -13,16 +13,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const index_core_1 = __importDefault(require("../../core/index.core"));
-const header_1 = require("../../models/header");
+const Information = require('../../db/models').tbl_information;
+const error_helper_1 = __importDefault(require("../../helper/error.helper"));
 class HeaderDelete extends index_core_1.default {
     constructor() {
-        super(header_1.HeadersInstance);
+        super(Information);
     }
     exec(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const id = req.params.id;
-                let data = yield header_1.HeadersInstance.destroy({ where: { id } });
+                let data = yield Information.destroy({ where: { id } });
                 return res.status(200).json({
                     status: 'success',
                     message: 'header berhasil dihapus',
@@ -30,9 +31,10 @@ class HeaderDelete extends index_core_1.default {
                 });
             }
             catch (err) {
+                let message = 'Unknown Error';
+                let error_result = yield error_helper_1.default(err, message);
                 return res.status(400).json({
-                    status: 'error',
-                    message: err.message
+                    error_result
                 });
             }
         });
