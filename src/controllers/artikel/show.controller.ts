@@ -14,13 +14,10 @@ class ArtikelShow extends API{
         try{
             const id = req.params.id
 
-            let data = await Artikel.findOne({where:{ id}}, 
-                {
-                    include : [
-                        { model : Kategori, as:'tbl_kategoris'},
-                        { model: Gambar,  as: 'tbl_gambars'}
-                    ],
-            })
+            let data = await Artikel.findOne({where:{ id}, include: [
+                { model : Kategori, as:'tbl_kategoris'},
+                { model : Gambar, as:'tbl_gambars'}
+            ]})
 
             return res.status(200).json({
                 status: 'success',

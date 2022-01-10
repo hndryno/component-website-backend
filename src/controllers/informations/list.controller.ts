@@ -12,8 +12,7 @@ class InformationList extends API{
     }
     async exec(req: Request, res: Response, next: NextFunction){
         try{
-            const id = req.params.id
-
+            
             let data = await Information.findAll({
                 include : [
                     { model : Gambar, as:'info_gambar'}

@@ -42,7 +42,7 @@ class InformationCreate extends index_core_1.default {
                 let save_image = yield Image.create(req_data);
                 let gambar_id = save_image.dataValues.id;
                 const id = (0, uuid_1.v4)();
-                let { nama_website, deskripsi, social_media, lokasi } = req.body;
+                let { nama_website, deskripsi, facebook, twitter, instagram, lokasi } = req.body;
                 const errors = (0, express_validator_1.validationResult)(req);
                 if (!errors.isEmpty()) {
                     yield fs_1.default.unlinkSync(`${dir}/${filename}`);
@@ -51,7 +51,7 @@ class InformationCreate extends index_core_1.default {
                         message: errors.array()
                     });
                 }
-                let request_data = { id, nama_website, deskripsi, lokasi, social_media, gambar_id };
+                let request_data = { id, nama_website, deskripsi, lokasi, facebook, twitter, instagram, gambar_id };
                 let data = yield Information.create(request_data);
                 return res.status(201).json({
                     status: 'success',

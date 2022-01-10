@@ -7,7 +7,9 @@ module.exports = (sequelize, DataTypes) => {
     deskripsi: DataTypes.STRING,
     lokasi: DataTypes.STRING,
     gambar_id: DataTypes.UUID,
-    social_media: DataTypes.STRING
+    facebook: DataTypes.STRING,
+    twitter: DataTypes.STRING,
+    instagram: DataTypes.STRING,
 
   }, {
     underscored: true

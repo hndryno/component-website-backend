@@ -24,7 +24,13 @@ module.exports = {
       lokasi: {
         type: Sequelize.STRING
       },
-      social_media: {
+      facebook: {
+        type: Sequelize.STRING
+      },
+      instagram: {
+        type: Sequelize.STRING
+      },
+      twitter: {
         type: Sequelize.STRING
       },
       created_at: {

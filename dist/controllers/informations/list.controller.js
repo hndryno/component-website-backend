@@ -23,7 +23,6 @@ class InformationList extends index_core_1.default {
     exec(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const id = req.params.id;
                 let data = yield Information.findAll({
                     include: [
                         { model: Gambar, as: 'info_gambar' }

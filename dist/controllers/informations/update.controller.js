@@ -50,8 +50,8 @@ class InformationUpdate extends index_core_1.default {
                     //update query
                     yield Gambar.update(request_data_gambar, { where: { id: old_image_id } });
                 }
-                let { nama_logo, nama_website, deskripsi, lokasi } = req.body;
-                let request_data = { id, nama_logo, nama_website, deskripsi, lokasi, gambar_id };
+                let { nama_website, deskripsi, lokasi, facebook, twitter, instagram } = req.body;
+                let request_data = { id, nama_website, deskripsi, lokasi, facebook, twitter, instagram, gambar_id };
                 let data = yield Information.update(request_data, { where: { id } });
                 return res.status(201).json({
                     status: 'success',

@@ -25,12 +25,10 @@ class ArtikelShow extends index_core_1.default {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const id = req.params.id;
-                let data = yield Artikel.findOne({ where: { id } }, {
-                    include: [
+                let data = yield Artikel.findOne({ where: { id }, include: [
                         { model: Kategori, as: 'tbl_kategoris' },
                         { model: Gambar, as: 'tbl_gambars' }
-                    ],
-                });
+                    ] });
                 return res.status(200).json({
                     status: 'success',
                     message: 'artikel berhasil ditampilkan',
