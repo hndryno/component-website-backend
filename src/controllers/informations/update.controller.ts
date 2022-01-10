@@ -9,7 +9,7 @@ let dir = path.join(__dirname, '../../../uploads')
 
 import {Request, Response, NextFunction} from 'express';
 
-class HeaderUpdate extends API{
+class InformationUpdate extends API{
     constructor(){
         super(Information)
     }
@@ -19,9 +19,9 @@ class HeaderUpdate extends API{
             const id = req.params.id
 
             //ambil gambar_idnya dari artikel
-            let artikel = await Artikel.findOne({where: {id}, raw: true})
+            let information = await Information.findOne({where: {id}, raw: true})
 
-            let gambar_id = artikel.gambar_id
+            let gambar_id = information.gambar_id
 
              //kalau ada filenya update filenya
              if(req.file){
@@ -41,7 +41,6 @@ class HeaderUpdate extends API{
                 let request_data_gambar:any = { filename, original_name, path, mimetype }
                 //update query
                 await Gambar.update(request_data_gambar,{where:{id: old_image_id}})
-
             }
 
             let { nama_logo, nama_website, deskripsi, lokasi } = req.body
@@ -52,7 +51,7 @@ class HeaderUpdate extends API{
 
             return res.status(201).json({
                 status: 'success',
-                message: 'header berhasil diupdate',
+                message: 'data berhasil diupdate',
                 data
             })
         }catch(err){
@@ -67,4 +66,4 @@ class HeaderUpdate extends API{
     }
 }
 
-export default HeaderUpdate
+export default InformationUpdate

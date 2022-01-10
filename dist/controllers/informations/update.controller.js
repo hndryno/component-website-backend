@@ -20,7 +20,7 @@ const error_helper_1 = __importDefault(require("../../helper/error.helper"));
 const Gambar = require('../../db/models').tbl_gambar;
 const Artikel = require('../../db/models').tbl_artikel;
 let dir = path_1.default.join(__dirname, '../../../uploads');
-class HeaderUpdate extends index_core_1.default {
+class InformationUpdate extends index_core_1.default {
     constructor() {
         super(Information);
     }
@@ -30,8 +30,8 @@ class HeaderUpdate extends index_core_1.default {
             try {
                 const id = req.params.id;
                 //ambil gambar_idnya dari artikel
-                let artikel = yield Artikel.findOne({ where: { id }, raw: true });
-                let gambar_id = artikel.gambar_id;
+                let information = yield Information.findOne({ where: { id }, raw: true });
+                let gambar_id = information.gambar_id;
                 //kalau ada filenya update filenya
                 if (req.file) {
                     console.log('filenya perlu diupdate');
@@ -55,7 +55,7 @@ class HeaderUpdate extends index_core_1.default {
                 let data = yield Information.update(request_data, { where: { id } });
                 return res.status(201).json({
                     status: 'success',
-                    message: 'header berhasil diupdate',
+                    message: 'data berhasil diupdate',
                     data
                 });
             }
@@ -69,4 +69,4 @@ class HeaderUpdate extends index_core_1.default {
         });
     }
 }
-exports.default = HeaderUpdate;
+exports.default = InformationUpdate;

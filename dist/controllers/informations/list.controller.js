@@ -14,25 +14,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const index_core_1 = __importDefault(require("../../core/index.core"));
 const error_helper_1 = __importDefault(require("../../helper/error.helper"));
-const Artikel = require('../../db/models').tbl_artikel;
+const Information = require('../../db/models').tbl_information;
 const Gambar = require('../../db/models').tbl_gambar;
-const Kategori = require('../../db/models').tbl_kategori;
-class ArtikelList extends index_core_1.default {
+class InformationList extends index_core_1.default {
     constructor() {
-        super(Artikel);
+        super(Information);
     }
     exec(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                let data = yield Artikel.findAll({
+                const id = req.params.id;
+                let data = yield Information.findAll({
                     include: [
-                        { model: Kategori, as: 'tbl_kategoris' },
-                        { model: Gambar, as: 'tbl_gambars' }
-                    ]
+                        { model: Gambar, as: 'info_gambar' }
+                    ],
                 });
                 return res.status(200).json({
                     status: 'success',
-                    message: 'header berhasil ditampilkan',
+                    message: 'data berhasil ditampilkan',
                     data
                 });
             }
@@ -46,4 +45,4 @@ class ArtikelList extends index_core_1.default {
         });
     }
 }
-exports.default = ArtikelList;
+exports.default = InformationList;

@@ -7,6 +7,7 @@ import ArtikelUpdate from '../controllers/artikel/update.controller';
 import ArtikelDelete from '../controllers/artikel/delete.controller';
 import ArtikelList from '../controllers/artikel/list.controller';
 import ArtikelValidation from '../validation/artikel.validation'
+import ArtikelListByKategori from '../controllers/artikel/findByKategori.controller';
 import multerSettings from '../libs/multer';
 
 const upload = multer(multerSettings);
@@ -17,6 +18,8 @@ router.post('/', upload.single('image'), ArtikelValidation.CreateArtikelValidati
 router.get('/', async(req:Request, res: Response, next: NextFunction) => await new ArtikelList().exec(req, res, next))
 
 router.get('/:id', async(req:Request, res: Response, next: NextFunction) => await new ArtikelShow().exec(req, res, next))
+
+router.get('/kategori/:id', async(req:Request, res: Response, next: NextFunction) => await new ArtikelListByKategori().exec(req, res, next))
 
 router.patch('/:id', upload.single('image'), async(req:Request, res: Response, next: NextFunction) => await new ArtikelUpdate().exec(req, res, next))
 

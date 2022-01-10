@@ -1,11 +1,12 @@
 import API from '../../core/index.core';
 import reportError from '../../helper/error.helper';
 
-import {Request, Response, NextFunction} from 'express';
 const Information = require('../../db/models').tbl_information
 const Gambar = require('../../db/models').tbl_gambar
 
-class InformationShow extends API{
+import {Request, Response, NextFunction} from 'express';
+
+class InformationList extends API{
     constructor(){
         super(Information)
     }
@@ -13,9 +14,11 @@ class InformationShow extends API{
         try{
             const id = req.params.id
 
-            let data = await Information.findOne({where:{ id}, include: [
-                { model : Gambar, as:'info_gambar'}
-            ]})
+            let data = await Information.findAll({
+                include : [
+                    { model : Gambar, as:'info_gambar'}
+                ],
+            })
 
             return res.status(200).json({
                 status: 'success',
@@ -34,4 +37,4 @@ class InformationShow extends API{
     }
 }
 
-export default InformationShow
+export default InformationList

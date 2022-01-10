@@ -3,11 +3,11 @@ const { v4: uuid } = require('uuid')
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Header = sequelize.define('tbl_information', {
-    nama_logo: DataTypes.STRING,
     nama_website: DataTypes.STRING,
     deskripsi: DataTypes.STRING,
     lokasi: DataTypes.STRING,
-    gambar_id: DataTypes.UUID
+    gambar_id: DataTypes.UUID,
+    social_media: DataTypes.STRING
 
   }, {
     underscored: true
