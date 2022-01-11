@@ -19,7 +19,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       deskripsi: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       lokasi: {
         type: Sequelize.STRING
@@ -31,6 +31,12 @@ module.exports = {
         type: Sequelize.STRING
       },
       twitter: {
+        type: Sequelize.STRING
+      },
+      tahun: {
+        type: Sequelize.INTEGER
+      },
+      copyright: {
         type: Sequelize.STRING
       },
       created_at: {

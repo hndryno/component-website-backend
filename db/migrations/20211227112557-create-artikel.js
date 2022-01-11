@@ -1,11 +1,25 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('tbl_informations', {
+    await queryInterface.createTable('tbl_artikels', {
       id: {
         primaryKey:true,
         allowNull: false,
         type: Sequelize.UUID,
+      },
+      nama_artikel: {
+        type: Sequelize.STRING
+      },
+      deskripsi_artikel: {
+        type: Sequelize.STRING
+      },
+      kategori_id: {
+          type: Sequelize.UUID,
+          onDelete: 'CASCADE',
+          references: {
+            model: 'tbl_kategoris',
+            key: 'id'
+        },
       },
       gambar_id: {
         type: Sequelize.UUID,
@@ -14,30 +28,6 @@ module.exports = {
           model: 'tbl_gambars',
           key: 'id'
         },
-      },
-      nama_website: {
-        type: Sequelize.STRING
-      },
-      deskripsi: {
-        type: Sequelize.TEXT
-      },
-      lokasi: {
-        type: Sequelize.STRING
-      },
-      facebook: {
-        type: Sequelize.STRING
-      },
-      instagram: {
-        type: Sequelize.STRING
-      },
-      twitter: {
-        type: Sequelize.STRING
-      },
-      tahun: {
-        type: Sequelize.INTEGER
-      },
-      copyright: {
-        type: Sequelize.STRING
       },
       created_at: {
         allowNull: false,
@@ -50,6 +40,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('tbl_informations');
+    await queryInterface.dropTable('tbl_artikels');
   }
 };

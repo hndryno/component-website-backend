@@ -11,7 +11,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       deskripsi_artikel: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
+      },
+      isi: {
+        type: Sequelize.TEXT
       },
       kategori_id: {
           type: Sequelize.UUID,

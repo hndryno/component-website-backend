@@ -34,7 +34,7 @@ class ArtikelCreate extends API{
 
             let gambar_id = save_image.dataValues.id;
             
-            let { nama_artikel, deskripsi_artikel, kategori_id } = req.body
+            let { nama_artikel, deskripsi_artikel, isi, kategori_id } = req.body
 
             const errors = validationResult(req);
 
@@ -50,7 +50,7 @@ class ArtikelCreate extends API{
 
             const id = uuidv4();
 
-            let request_data:any = {  id, nama_artikel, deskripsi_artikel, kategori_id, gambar_id }
+            let request_data:any = {  id, nama_artikel, isi, deskripsi_artikel, kategori_id, gambar_id }
 
             let data = await Artikel.create(request_data)
 

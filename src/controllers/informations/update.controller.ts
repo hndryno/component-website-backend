@@ -43,9 +43,9 @@ class InformationUpdate extends API{
                 await Gambar.update(request_data_gambar,{where:{id: old_image_id}})
             }
 
-            let { nama_website, deskripsi, lokasi, facebook, twitter, instagram } = req.body
+            let { nama_website, deskripsi, lokasi, facebook, twitter, instagram, tahun, copyright } = req.body
 
-            let request_data:any = { id,  nama_website, deskripsi, lokasi, facebook, twitter, instagram, gambar_id  }
+            let request_data:any = { id,  nama_website, deskripsi, lokasi, facebook, twitter, instagram, gambar_id, tahun, copyright }
 
             let data = await Information.update(request_data,{where:{id}})
 

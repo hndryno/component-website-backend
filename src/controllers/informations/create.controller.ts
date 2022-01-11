@@ -38,7 +38,9 @@ class InformationCreate extends API{
 
             const id = uuidv4();
 
-            let { nama_website, deskripsi, facebook, twitter, instagram, lokasi } = req.body
+            let { nama_website, deskripsi, facebook, twitter, instagram, lokasi, tahun, copyright } = req.body
+
+            console.log(req.body)
 
             const errors = validationResult(req);
 
@@ -52,7 +54,7 @@ class InformationCreate extends API{
                 });
             }
 
-            let request_data:any = { id, nama_website, deskripsi, lokasi, facebook, twitter, instagram, gambar_id }
+            let request_data:any = { id, nama_website, deskripsi, lokasi, facebook, twitter, instagram, gambar_id, tahun, copyright }
 
             let data = await Information.create(request_data)
 

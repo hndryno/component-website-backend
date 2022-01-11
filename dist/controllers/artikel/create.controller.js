@@ -40,7 +40,7 @@ class ArtikelCreate extends index_core_1.default {
                 let req_data = { id: id2, filename, original_name, path, mimetype };
                 let save_image = yield Image.create(req_data);
                 let gambar_id = save_image.dataValues.id;
-                let { nama_artikel, deskripsi_artikel, kategori_id } = req.body;
+                let { nama_artikel, deskripsi_artikel, isi, kategori_id } = req.body;
                 const errors = (0, express_validator_1.validationResult)(req);
                 if (!errors.isEmpty()) {
                     yield fs_1.default.unlinkSync(`${dir}/${filename}`);
@@ -50,7 +50,7 @@ class ArtikelCreate extends index_core_1.default {
                     });
                 }
                 const id = (0, uuid_1.v4)();
-                let request_data = { id, nama_artikel, deskripsi_artikel, kategori_id, gambar_id };
+                let request_data = { id, nama_artikel, isi, deskripsi_artikel, kategori_id, gambar_id };
                 let data = yield Artikel.create(request_data);
                 return res.status(201).json({
                     status: 'success',

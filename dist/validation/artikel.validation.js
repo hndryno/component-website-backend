@@ -14,6 +14,10 @@ artikelValidation.CreateArtikelValidation = [
         .not()
         .isEmpty()
         .withMessage("Field kategori_id tidak boleh kosong"),
+    (0, express_validator_1.check)("isi")
+        .not()
+        .isEmpty()
+        .withMessage("Field isi tidak boleh kosong"),
 ];
 artikelValidation.UpdateArtikelValidation = [
     (0, express_validator_1.check)("nama_artikel")
@@ -26,5 +30,9 @@ artikelValidation.UpdateArtikelValidation = [
         .not()
         .isEmpty()
         .withMessage("Field kategori_id tidak boleh kosong"),
+    (0, express_validator_1.check)("isi")
+        .not()
+        .isEmpty()
+        .withMessage("Field isi tidak boleh kosong"),
 ];
 exports.default = artikelValidation;

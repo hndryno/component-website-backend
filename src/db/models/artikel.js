@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     nama_artikel: DataTypes.STRING,
     deskripsi_artikel: DataTypes.STRING,
     kategori_id: DataTypes.UUID,
-    gambar_id: DataTypes.UUID
+    gambar_id: DataTypes.UUID,
+    isi: DataTypes.STRING
   }, {
     underscored: true
   });

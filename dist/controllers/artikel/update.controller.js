@@ -49,8 +49,8 @@ class ArtikelUpdate extends index_core_1.default {
                     //update query
                     yield Gambar.update(request_data_gambar, { where: { id: old_image_id } });
                 }
-                let { nama_artikel, deskripsi_artikel, kategori_id } = req.body;
-                let request_data = { nama_artikel, deskripsi_artikel, kategori_id, gambar_id };
+                let { nama_artikel, isi, deskripsi_artikel, kategori_id } = req.body;
+                let request_data = { nama_artikel, isi, deskripsi_artikel, kategori_id, gambar_id };
                 let data = yield Artikel.update(request_data, { where: { id } });
                 return res.status(201).json({
                     status: 'success',

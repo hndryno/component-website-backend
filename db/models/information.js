@@ -10,8 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     facebook: DataTypes.STRING,
     twitter: DataTypes.STRING,
     instagram: DataTypes.STRING,
-    tahun: DataTypes.INTEGER,
-    copyright: DataTypes.STRING
+
   }, {
     underscored: true
   });

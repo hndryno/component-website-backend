@@ -1,42 +1,41 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('tbl_informations', {
+    await queryInterface.createTable('tbl_submenus', {
       id: {
         primaryKey:true,
         allowNull: false,
         type: Sequelize.UUID,
       },
-      gambar_id: {
+      nama: {
+        type: Sequelize.STRING
+      },
+      menu_id: {
         type: Sequelize.UUID,
         onDelete: 'CASCADE',
-        references: {
-          model: 'tbl_gambars',
-          key: 'id'
+          references: {
+            model: 'tbl_menus',
+            key: 'id'
         },
       },
-      nama_website: {
+      submenu_id: {
+        type: Sequelize.UUID,
+        onDelete: 'CASCADE',
+          references: {
+            model: 'tbl_submenus',
+            key: 'id'
+        },
+      },
+      urutan: {
         type: Sequelize.STRING
       },
-      deskripsi: {
-        type: Sequelize.TEXT
-      },
-      lokasi: {
+      icon: {
         type: Sequelize.STRING
       },
-      facebook: {
+      url: {
         type: Sequelize.STRING
       },
-      instagram: {
-        type: Sequelize.STRING
-      },
-      twitter: {
-        type: Sequelize.STRING
-      },
-      tahun: {
-        type: Sequelize.INTEGER
-      },
-      copyright: {
+      target: {
         type: Sequelize.STRING
       },
       created_at: {
@@ -50,6 +49,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('tbl_informations');
+    await queryInterface.dropTable('tbl_submenus');
   }
 };

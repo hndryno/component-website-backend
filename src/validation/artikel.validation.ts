@@ -12,6 +12,10 @@ class artikelValidation{
         .not()
         .isEmpty()
         .withMessage("Field kategori_id tidak boleh kosong"),
+        check("isi")
+        .not()
+        .isEmpty()
+        .withMessage("Field isi tidak boleh kosong"),
     ]
 
     static UpdateArtikelValidation:any = [ 
@@ -25,6 +29,10 @@ class artikelValidation{
         .not()
         .isEmpty()
         .withMessage("Field kategori_id tidak boleh kosong"),
+        check("isi")
+        .not()
+        .isEmpty()
+        .withMessage("Field isi tidak boleh kosong"),
     ]
 }
 

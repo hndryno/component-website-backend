@@ -44,9 +44,9 @@ class ArtikelUpdate extends API{
 
             }
 
-            let { nama_artikel, deskripsi_artikel, kategori_id} = req.body
+            let { nama_artikel, isi, deskripsi_artikel, kategori_id} = req.body
 
-            let request_data:any = { nama_artikel, deskripsi_artikel, kategori_id, gambar_id }
+            let request_data:any = { nama_artikel, isi, deskripsi_artikel, kategori_id, gambar_id }
 
             let data = await Artikel.update(request_data,{where:{id}})
 
